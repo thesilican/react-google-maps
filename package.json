@@ -1,7 +1,7 @@
 {
   "name": "@thesilican/react-google-maps",
   "version": "0.1.0",
-  "description": "Because",
+  "description": "Because google-maps-react wasn't working for me",
   "main": "dist/index.js",
   "typings": "typings/index.d.ts",
   "dependencies": {
@@ -17,11 +17,21 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "build": "tsc",
-    "clean": "rimraf **/dist/* && rimraf .cache",
+    "prepublish": "npm run build",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf **/dist && rimraf .cache && rimraf typings",
     "test": "parcel test/index.html --out-dir test/dist"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "google",
+    "map",
+    "maps",
+    "react"
+  ],
+  "author": "thesilican",
+  "license": "ISC",
+  "files": [
+    "dist/**/*",
+    "typings/**/*"
+  ]
 }

@@ -7,7 +7,7 @@ import {
   MapType,
 } from "../types";
 import { GoogleContext } from "./Google";
-import { Marker } from "./Marker";
+import Marker from "./Marker";
 
 // Props accessed by markers
 export type MapChildProps = {
