@@ -1,6 +1,6 @@
 {
   "name": "@thesilican/react-google-maps",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Because google-maps-react wasn't working for me",
   "main": "dist/index.js",
   "typings": "typings/index.d.ts",
@@ -17,7 +17,7 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "build": "npm run clean && tsc",
     "clean": "rimraf **/dist && rimraf .cache && rimraf typings",
     "test": "parcel test/index.html --out-dir test/dist"
@@ -30,6 +30,10 @@
   ],
   "author": "thesilican",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thesilican/its-not-commando.git"
+  },
   "files": [
     "dist/**/*",
     "typings/**/*"

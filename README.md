@@ -5,7 +5,7 @@ Because neither [`react-google-maps`][rgm] nor [`google-maps-react`][gmr] seem t
 # Install
 
 ```
-$ npm install its-not-react-google-maps
+$ npm install @thesilican/react-google-maps
 ```
 
 # Documentation
