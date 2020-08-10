@@ -11,7 +11,6 @@ import Marker from "./Marker";
 
 // Props accessed by markers
 export type MapChildProps = {
-  google: GoogleType;
   map: MapType;
   infoWindow: InfoWindowType;
 };
@@ -58,24 +57,22 @@ function updateListeners(
   };
 }
 
-export default function Map(props: MapProps) {
+function Map(props: MapProps) {
   const google = useContext(GoogleContext);
   const mapDiv = useRef(null as HTMLDivElement | null);
-  const [map, setMap] = useState(null as MapType | null);
-  const [infoWindow, setInfoWindow] = useState(null as InfoWindowType | null);
+  const [mapCtx, setMapCtx] = useState(null as MapChildProps | null);
   const [listeners, setListeners] = useState({} as ListenerDict);
 
   // Load map
   useEffect(() => {
-    if (!google) return;
+    if (!google || !mapDiv.current) return;
     const map = new google.maps.Map(mapDiv.current!, {
       noClear: true,
       center: props.center ?? DefaultCoordinate,
       zoom: props.zoom ?? 8,
     });
     const infoWindow = new google.maps.InfoWindow();
-    setMap(map);
-    setInfoWindow(infoWindow);
+    setMapCtx({ map, infoWindow });
     setListeners(updateListeners(map, props, listeners));
     // Get rid of that annoying message thing
     let counter = 0;
@@ -90,8 +87,8 @@ export default function Map(props: MapProps) {
   // Map Events
   useEffect(
     () => {
-      if (!map) return;
-      const newListeners = updateListeners(map, props, listeners);
+      if (!mapCtx) return;
+      const newListeners = updateListeners(mapCtx.map, props, listeners);
       setListeners(newListeners);
     },
     Object.keys(props)
@@ -110,29 +107,41 @@ export default function Map(props: MapProps) {
         }
       }
     });
-    if (!found) infoWindow?.close();
+    if (!found) mapCtx?.infoWindow.close();
   });
   // Props
   useEffect(() => {
-    if (map && props.center) {
-      map.setCenter(props.center);
+    if (mapCtx && props.center) {
+      mapCtx.map.setCenter(props.center);
     }
   }, [props.center]);
   useEffect(() => {
-    if (map && props.zoom) {
-      map.setZoom(props.zoom);
+    if (mapCtx && props.zoom) {
+      mapCtx.map.setZoom(props.zoom);
     }
   }, [props.zoom]);
 
   return (
-    <div id={props.id} className={props.className} ref={mapDiv}>
-      {google && map && infoWindow ? (
-        <MapContext.Provider value={{ google, map, infoWindow }}>
-          {props.children}
+    <div
+      id={props.id}
+      className={props.className}
+      style={{ position: "relative" }}
+    >
+      {google && mapCtx ? (
+        <MapContext.Provider value={mapCtx}>
+          <div className="markers">{props.children}</div>
         </MapContext.Provider>
       ) : (
         props.placeholder ?? <span>Loading...</span>
       )}
+      {/* Epic double div wrapper*/}
+      <div
+        style={{ position: "absolute", top: 0, bottom: 0, left: 0, right: 0 }}
+      >
+        <div ref={mapDiv} style={{ width: "100%", height: "100%" }} />
+      </div>
     </div>
   );
 }
+
+export default Map;

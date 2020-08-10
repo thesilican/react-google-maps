@@ -1,6 +1,7 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Fragment } from "react";
 import { Coordinate, DefaultCoordinate, MarkerType } from "../types";
 import { MapChildProps, MapContext } from "./Map";
+import { GoogleContext } from "./Google";
 
 export type MarkerProps = {
   _map?: MapChildProps;
@@ -149,7 +150,8 @@ function getContent(title?: string, body?: string) {
   </div>`;
 }
 
-export default function Marker(props: MarkerProps) {
+function Marker(props: MarkerProps) {
+  const google = useContext(GoogleContext);
   const mapCtx = useContext(MapContext);
   const [marker, setMarker] = useState(null as MarkerType | null);
   const [listeners, setListeners] = useState({} as ListenerDict);
@@ -158,13 +160,10 @@ export default function Marker(props: MarkerProps) {
   );
   // On Load
   useEffect(() => {
-    if (!mapCtx) return;
-    const { google, map } = mapCtx;
+    if (!mapCtx || !google) return;
+    const { map } = mapCtx;
     const marker = new google.maps.Marker({
       map,
-      animation: props.animation
-        ? google.maps.Animation[props.animation]
-        : undefined,
       clickable: props.clickable,
       cursor: props.cursor,
       draggable: props.draggable,
@@ -177,6 +176,10 @@ export default function Marker(props: MarkerProps) {
       zIndex: props.zIndex,
       title: props.title,
     });
+    // This seems to work better
+    marker.setAnimation(
+      props.animation ? google.maps.Animation[props.animation] : null
+    );
     setMarker(marker);
     setListeners(updateListeners(marker, props, listeners));
 
@@ -203,7 +206,7 @@ export default function Marker(props: MarkerProps) {
   useEffect(() => {
     if (marker)
       marker.setAnimation(
-        props.animation ? google.maps.Animation[props.animation] : null
+        props.animation ? google!.maps.Animation[props.animation] : null
       );
   }, [props.animation]);
   useEffect(() => {
@@ -261,5 +264,7 @@ export default function Marker(props: MarkerProps) {
     }
   }, [props.infoShown]);
 
-  return null;
+  return <div />;
 }
+
+export default Marker;

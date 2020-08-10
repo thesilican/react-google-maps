@@ -9,20 +9,6 @@ const defaultLocations = [
     },
     name: "Joe's Pizza",
   },
-  {
-    pos: {
-      lat: 1,
-      lng: 0,
-    },
-    name: "John's Pizza",
-  },
-  {
-    pos: {
-      lat: 2,
-      lng: 0,
-    },
-    name: "James's Pizza",
-  },
 ];
 
 export default function Markers() {
@@ -59,7 +45,9 @@ export default function Markers() {
       {locations.map((v, i) => (
         <Marker
           key={i}
+          animation={"DROP"}
           position={v.pos}
+          draggable={true}
           infoWindow={{ title: v.name }}
           infoShown={selected === i}
           onClick={() => handleMarkerClick(i)}
