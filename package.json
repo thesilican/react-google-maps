@@ -1,0 +1,27 @@
+{
+  "name": "@thesilican/react-google-maps",
+  "version": "0.1.0",
+  "description": "Because",
+  "main": "dist/index.js",
+  "typings": "typings/index.d.ts",
+  "dependencies": {
+    "@types/google-maps": "^3.2.2",
+    "@types/react": "^16.9.44",
+    "google-maps": "^4.3.2",
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^16.9.8",
+    "parcel": "^1.12.4",
+    "react-dom": "^16.13.1",
+    "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf **/dist/* && rimraf .cache",
+    "test": "parcel test/index.html --out-dir test/dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
