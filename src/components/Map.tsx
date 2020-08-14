@@ -124,7 +124,7 @@ function Map(props: MapProps) {
     <div
       id={props.id}
       className={props.className}
-      style={{ position: "relative" }}
+      style={{ position: "absolute", top: 0, bottom: 0, left: 0, right: 0 }}
     >
       {google && mapCtx ? (
         <MapContext.Provider value={mapCtx}>
@@ -134,11 +134,7 @@ function Map(props: MapProps) {
         props.placeholder ?? <span>Loading...</span>
       )}
       {/* Epic double div wrapper*/}
-      <div
-        style={{ position: "absolute", top: 0, bottom: 0, left: 0, right: 0 }}
-      >
-        <div ref={mapDiv} style={{ width: "100%", height: "100%" }} />
-      </div>
+      <div ref={mapDiv} style={{ width: "100%", height: "100%" }} />
     </div>
   );
 }

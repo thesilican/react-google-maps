@@ -42,16 +42,18 @@ export default function HeatMapTest() {
   const [locations, setLocations] = useState(weightedMap);
 
   return (
-    <Map className={"map"} center={center} zoom={14}>
-      <HeatMap
-        data={locations}
-        // dissipating={false}
-        radius={20}
-        // gradient={gradient}
-        maxIntensity={3}
-        opacity={0.6}
-      />
-    </Map>
+    <div className="map">
+      <Map center={center} zoom={14}>
+        <HeatMap
+          data={locations}
+          // dissipating={false}
+          radius={20}
+          // gradient={gradient}
+          maxIntensity={3}
+          opacity={0.6}
+        />
+      </Map>
+    </div>
   );
 }
 

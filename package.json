@@ -1,6 +1,6 @@
 {
   "name": "@thesilican/react-google-maps",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "Because google-maps-react wasn't working for me",
   "main": "dist/index.js",
   "typings": "typings/index.d.ts",
@@ -32,7 +32,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thesilican/its-not-commando.git"
+    "url": "https://github.com/thesilican/react-google-maps.git"
   },
   "files": [
     "dist/**/*",

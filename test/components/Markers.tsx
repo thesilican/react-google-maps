@@ -28,32 +28,33 @@ export default function Markers() {
   };
 
   return (
-    <Map
-      className={"map"}
-      center={center}
-      onClick={(m, e) => {
-        setSelected(null);
-        setLocations([
-          ...locations,
-          {
-            pos: e.latLng.toJSON(),
-            name: "A",
-          },
-        ]);
-      }}
-    >
-      {locations.map((v, i) => (
-        <Marker
-          key={i}
-          animation={"DROP"}
-          position={v.pos}
-          draggable={true}
-          info={{ title: v.name }}
-          infoShown={selected === i}
-          onClick={() => handleMarkerClick(i)}
-          onInfoClose={handleInfoClose}
-        />
-      ))}
-    </Map>
+    <div className="map">
+      <Map
+        center={center}
+        onClick={(m, e) => {
+          setSelected(null);
+          setLocations([
+            ...locations,
+            {
+              pos: e.latLng.toJSON(),
+              name: "A",
+            },
+          ]);
+        }}
+      >
+        {locations.map((v, i) => (
+          <Marker
+            key={i}
+            animation={"DROP"}
+            position={v.pos}
+            draggable={true}
+            info={{ title: v.name }}
+            infoShown={selected === i}
+            onClick={() => handleMarkerClick(i)}
+            onInfoClose={handleInfoClose}
+          />
+        ))}
+      </Map>
+    </div>
   );
 }
