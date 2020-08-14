@@ -48,7 +48,7 @@ export default function Markers() {
           animation={"DROP"}
           position={v.pos}
           draggable={true}
-          infoWindow={{ title: v.name }}
+          info={{ title: v.name }}
           infoShown={selected === i}
           onClick={() => handleMarkerClick(i)}
           onInfoClose={handleInfoClose}

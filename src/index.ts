@@ -15,4 +15,5 @@ export {
   MouseEventListener as MarkerMouseEventListener,
   default as Marker,
 } from "./components/Marker";
+export { HeatMapProps, default as HeatMap } from "./components/HeatMap";
 export { default as Google } from "./components/Google";

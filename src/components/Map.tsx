@@ -1,4 +1,3 @@
-import { google as GoogleType } from "google-maps";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Coordinate,

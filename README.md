@@ -1,4 +1,4 @@
-# its-not-react-google-maps
+# @thesilican/react-google-maps
 
 Because neither [`react-google-maps`][rgm] nor [`google-maps-react`][gmr] seem to work well for me.
 

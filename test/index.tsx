@@ -5,15 +5,26 @@ import RemovingMarkers from "./components/RemovingMarkers";
 import { Google } from "../src/index";
 import MapProperties from "./components/MapProperties";
 import Markers from "./components/Markers";
+import HeatMapTest from "./components/HeatMapTest";
+import { token } from "./auth";
 
-const tests = [<Basic />, <RemovingMarkers />, <MapProperties />, <Markers />];
-const defaultTest = 3;
+const tests = [
+  <Basic />,
+  <RemovingMarkers />,
+  <MapProperties />,
+  <Markers />,
+  <HeatMapTest />,
+];
+const defaultTest = tests.length - 1;
 
 function App() {
   const [selected, setSelected] = useState(defaultTest);
 
+  // let apiKey = token;
+  let apiKey = undefined;
+
   return (
-    <Google>
+    <Google apiKey={apiKey}>
       <div className="App">
         <div className="p-3">
           {tests.map((x: React.ReactElement, i) => {

@@ -5,11 +5,11 @@ import { GoogleContext } from "./Google";
 
 export type MarkerProps = {
   _map?: MapChildProps;
-  infoShown?: boolean;
-  infoWindow?: {
+  info?: {
     title?: string;
     body?: string;
   };
+  infoShown?: boolean;
   onInfoClose?: () => void;
 } & GoogleMarkerProps &
   GoogleMarkerEvents;
@@ -250,8 +250,8 @@ function Marker(props: MarkerProps) {
     closeListener?.remove();
     if (props.infoShown) {
       const content = getContent(
-        props.infoWindow?.title,
-        props.infoWindow?.body
+        props.info?.title,
+        props.info?.body
       );
       mapCtx.infoWindow.setContent(content);
       mapCtx.infoWindow.open(mapCtx.map, marker);
