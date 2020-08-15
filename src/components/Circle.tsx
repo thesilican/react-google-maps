@@ -5,6 +5,8 @@ import { HeatMapType } from "..";
 import { CircleType, DefaultCoordinate, Coordinate } from "../types";
 
 export type CircleProps = {
+  clickable?: boolean;
+  draggable?: boolean;
   center?: Coordinate;
   radius?: number;
   fillColor?: string;
@@ -25,6 +27,8 @@ export default function Circle(props: CircleProps) {
     const { map } = mapCtx;
     const circle = new google.maps.Circle({
       map,
+      clickable: props.clickable,
+      draggable: props.draggable,
       center: props.center ?? DefaultCoordinate,
       radius: props.radius ?? 1,
       fillColor: props.fillColor,
@@ -50,6 +54,8 @@ export default function Circle(props: CircleProps) {
   useEffect(() => {
     if (!circle) return;
     circle.setOptions({
+      clickable: props.clickable,
+      draggable: props.draggable,
       fillColor: props.fillColor,
       fillOpacity: props.fillOpacity,
       strokeColor: props.strokeColor,
@@ -57,6 +63,8 @@ export default function Circle(props: CircleProps) {
       strokeWeight: props.strokeWeight,
     });
   }, [
+    props.clickable,
+    props.draggable,
     props.fillColor,
     props.fillOpacity,
     props.strokeColor,
