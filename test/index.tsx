@@ -7,6 +7,7 @@ import MapProperties from "./components/MapProperties";
 import Markers from "./components/Markers";
 import HeatMapTest from "./components/HeatMapTest";
 import { token } from "./auth";
+import CircleTest from "./components/CircleTest";
 
 const tests = [
   <Basic />,
@@ -14,6 +15,7 @@ const tests = [
   <MapProperties />,
   <Markers />,
   <HeatMapTest />,
+  <CircleTest />,
 ];
 const defaultTest = tests.length - 1;
 

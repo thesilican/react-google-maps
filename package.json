@@ -1,6 +1,6 @@
 {
   "name": "@thesilican/react-google-maps",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Because google-maps-react wasn't working for me",
   "main": "dist/index.js",
   "typings": "typings/index.d.ts",

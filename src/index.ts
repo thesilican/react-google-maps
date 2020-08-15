@@ -16,4 +16,5 @@ export {
   default as Marker,
 } from "./components/Marker";
 export { HeatMapProps, default as HeatMap } from "./components/HeatMap";
+export { CircleProps, default as Circle } from "./components/Circle";
 export { default as Google } from "./components/Google";

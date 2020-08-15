@@ -249,10 +249,7 @@ function Marker(props: MarkerProps) {
     // Remove current listener if it exists
     closeListener?.remove();
     if (props.infoShown) {
-      const content = getContent(
-        props.info?.title,
-        props.info?.body
-      );
+      const content = getContent(props.info?.title, props.info?.body);
       mapCtx.infoWindow.setContent(content);
       mapCtx.infoWindow.open(mapCtx.map, marker);
       const listener = mapCtx.infoWindow.addListener("closeclick", () => {
@@ -264,7 +261,7 @@ function Marker(props: MarkerProps) {
     }
   }, [props.infoShown]);
 
-  return <div />;
+  return <div className="marker" />;
 }
 
 export default Marker;
